@@ -3,8 +3,7 @@ import { Navigate, useRoutes } from 'react-router-dom';
 import DashboardLayout from './layouts/dashboard';
 
 import NotFound from './pages/Page404';
-import Products from './pages/Products';
-import Blog from './pages/Blog';
+import SentimentAnalysis from './pages/SentimentAnalysis';
 import DashboardApp from './pages/DashboardApp';
 
 // ----------------------------------------------------------------------
@@ -20,8 +19,8 @@ export default function Router() {
       element: <DashboardLayout />,
       children: [
         { path: '', element: <DashboardApp /> },
-        { path: 'autorec', element: <Products /> },
-        { path: 'sentimentanalysis', element: <Blog /> },
+        { path: 'autorec', element: <SentimentAnalysis /> },
+        { path: 'sentimentanalysis', element: <SentimentAnalysis /> },
         { path: '*', element: <NotFound /> },
       ],
     },
