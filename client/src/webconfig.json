@@ -1,4 +1,4 @@
 {
   "DashboardName": "MC Dashboard",
-  "BackUrl": "http://localhost:3001/"
+  "BackUrl": "http://localhost:8080/"
 }

@@ -13,6 +13,7 @@ const ListItemStyle = styled((props) => <ListItemButton disableGutters {...props
   ...theme.typography.body2,
   height: 48,
   position: 'relative',
+  marginBottom: '0.5em',
   textTransform: 'capitalize',
   color: theme.palette.text.secondary,
   borderRadius: theme.shape.borderRadius,
@@ -72,7 +73,7 @@ function NavItem({ item, active }) {
           {info && info}
           <Iconify
             icon={open ? 'eva:arrow-ios-downward-fill' : 'eva:arrow-ios-forward-fill'}
-            sx={{ width: 16, height: 16, ml: 1 }}
+            sx={{ width: 16, height: 16, ml: 1, m: 6 }}
           />
         </ListItemStyle>
 
@@ -142,11 +143,11 @@ NavSection.propTypes = {
 export default function NavSection({ navConfig, ...other }) {
   const { pathname } = useLocation();
 
-  const match = (path) => (path ? !!matchPath({ path, end: false }, pathname) : false);
+  const match = (path) => (path ? !!matchPath({ path }, pathname) : false);
 
   return (
     <Box {...other}>
-      <List disablePadding sx={{ p: 1 }}>
+      <List sx={{ p: 1 }}>
         {navConfig.map((item) => (
           <NavItem key={item.title} item={item} active={match} />
         ))}

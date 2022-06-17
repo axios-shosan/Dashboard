@@ -5,13 +5,53 @@ const Api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
     baseUrl: webconfig.BackUrl,
-    credentials: 'include',
+    headers: { 'content-type': 'application/json' },
   }),
   endpoints: (builder) => ({
+    getAutoRec: builder.mutation({
+      query: (body) => ({
+        url: '/predict_user',
+        method: 'POST',
+        body,
+      }),
+    }),
+
+    getAutoRecSa: builder.mutation({
+      query: (body) => ({
+        url: '/predict_user_review',
+        method: 'POST',
+        body,
+      }),
+    }),
+
+    getRatings: builder.mutation({
+      query: (body) => ({
+        url: '/criteria',
+        method: 'POST',
+        body,
+      }),
+    }),
+
+    getLstmWord2vec: builder.mutation({
+      query: (body) => ({
+        url: '/predict',
+        method: 'POST',
+        body,
+      }),
+    }),
+
+    getLstm: builder.mutation({
+      query: (body) => ({
+        url: 'predict_lstm',
+        method: 'POST',
+        body,
+      }),
+    }),
+
     /* ******************************* User ******************************* */
     /* Sign In */
     signIn: builder.mutation({
-      query: ({ body }) => ({
+      query: (body) => ({
         url: '/signin',
         method: 'POST',
         body,
@@ -50,5 +90,11 @@ export const {
   useLogOutMutation,
   useGetUserDataMutation,
   useEditUserMutation,
+  // ai
+  useGetAutoRecMutation,
+  useGetRatingsMutation,
+  useGetAutoRecSaMutation,
+  useGetLstmMutation,
+  useGetLstmWord2vecMutation,
 } = Api;
 export default Api;
