@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Paper, Link } from '@mui/material';
+import { Paper, Link, Slide } from '@mui/material';
 
 export default function CardLink({ link, picture, cardName }) {
   const navigate = useNavigate();
@@ -16,39 +16,41 @@ export default function CardLink({ link, picture, cardName }) {
     console.log(`going to ${link}`);
     navigate(link, { replace: true });
   }
-
+  const [slide, setSlide] = useState(true);
   return (
-    <Paper
-      onClick={() => goTo()}
-      onMouseOver={() => {
-        setElevate(20);
-      }}
-      onMouseLeave={() => {
-        setElevate(1);
-      }}
-      variant="elevation"
-      sx={{
-        width: 'fit-content',
-        minWidth: '25vw',
-        maxWidth: '27vw',
-        p: '2em',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      }}
-      elevation={elevate}
-    >
-      <img src={picture} alt="autoencoder" />
-      <Link
-        underline="hover"
-        style={{
-          color: '#1C1F3E',
-          fontSize: '1.25em',
+    <Slide direction="up" in={slide} mountOnEnter unmountOnExit timeout={500}>
+      <Paper
+        onClick={() => goTo()}
+        onMouseOver={() => {
+          setElevate(20);
         }}
+        onMouseLeave={() => {
+          setElevate(1);
+        }}
+        variant="elevation"
+        sx={{
+          width: 'fit-content',
+          minWidth: '25vw',
+          maxWidth: '27vw',
+          p: '2em',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
+        elevation={elevate}
       >
-        {cardName}
-      </Link>
-    </Paper>
+        <img src={picture} alt="autoencoder" />
+        <Link
+          underline="hover"
+          style={{
+            color: '#1C1F3E',
+            fontSize: '1.25em',
+          }}
+        >
+          {cardName}
+        </Link>
+      </Paper>
+    </Slide>
   );
 }
